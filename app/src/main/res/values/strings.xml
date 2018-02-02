@@ -1,0 +1,227 @@
+<resources>
+    <string name="app_name">QuicksaApp</string>
+    <string name="operador">Operador</string>
+    <string name="material">Material</string>
+    <string name="volquete">Volquete</string>
+    <string name="fecha">Fecha</string>
+    <string name="origen">Origen</string>
+    <string name="destino">Destino</string>
+    <string name="distancia">Distancia</string>
+    <string name="peso_bruto">Peso Bruto</string>
+    <string name="tara">Tara</string>
+    <string name="peso_neto">Peso Neto</string>
+    <string name="tiempo">Tiempo</string>
+    <string name="_00_00">00:00</string>
+    <string name="enviar">Enviar</string>
+    <string name="guardia">Guardia</string>
+    <string name="cancelar">CANCELAR</string>
+    <string name="add">Add</string>
+    <string name="filter_spinner">Filter Spinner</string>
+
+    <string-array name="Materiales">
+        <item>Mineral</item>
+        <item>Mineral Cancha</item>
+        <item>Relave</item>
+        <item>Desmonte</item>
+        <item>Relleno Cementado</item>
+        <item>Agregado</item>
+        <item>Ripio</item>
+        <item>Arena</item>
+        <item>Lama</item>
+        <item>Mortero</item>
+        <item>Cemento Puro</item>
+    </string-array>
+
+    <string-array name="Guardia">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+    </string-array>
+
+    <string-array name="OperadoresA">
+        <item>ALEJO CALIZAYA WILBER</item>
+        <item>BECERRAOVIEDOAMALFI OMAR</item>
+        <item>CARDENASALHUAYRUBEN</item>
+        <item>CASTILLOQUISPEGERMAN</item>
+        <item>CHAVEZ MARCELOJHONATAN DANNY</item>
+        <item>CHULLUNQUIA CHAÑI ROGER</item>
+        <item>CONDOR  GARCIA  VICTOR MANUEL</item>
+        <item>FLORES  YANQUI  BLAS MIKO</item>
+        <item>GALINDO GALVAN RICHARD JONATHAN</item>
+        <item>LOPEZ SANCHEZ MARCOS</item>
+        <item>MARIN CARI DARIO</item>
+        <item>MOJONERO TITO VLADIMIR NEPTALI</item>
+        <item>MORALES MEJIA LUIS ALBERTO</item>
+        <item>NINAHUAMAN ALCACAHUA ESTANISLAO SANTOS</item>
+        <item>QUISPE  TACUMA GERMAN ANDRES</item>
+        <item>RAMOS REZA ELVIS</item>
+        <item>VILCA  PARI ERASMO</item>
+        <item>TAYPE TANCAYLLO  FREDY RONAL</item>
+    </string-array>
+
+    <string-array name="OperadoresB">
+        <item>CABANA  CHARCA DAVID</item>
+        <item>CALAPUJA RIOS  LYAKHOV ALEXANDER</item>
+        <item>CONDORI  JORDAN VICENTE</item>
+        <item>INCA  APARCO  OSWALDO</item>
+        <item>INGA  CORDOVA ROBERTO CARLOS</item>
+        <item>LEON  NAIVARES EDGAR</item>
+        <item>MAMANI PACHACUTEC JAIME LUIS</item>
+        <item>PARI CENTENO BELTRAN FRANCISCO</item>
+        <item>PAUCAR  ORE  WINDERS FRANNS</item>
+        <item>PICHA SUPO EVERT</item>
+        <item>RODRIGO QUISPE JUAN  JOE</item>
+        <item>SENCIA  OLLACHICA RAUL</item>
+        <item>TAPIA VILCA JORGE  FLORENCIO</item>
+        <item>YBAÑIZ  PARICAHUA AMERICO</item>
+        <item>CRUCES RAMOS GONZALO MANUEL</item>
+        <item>COAQUIRA   SUCLLE  WILBERTO ESTEBAN</item>
+        <item>CONDORI  HUACARPUMA  JUAN  JOSE</item>
+        <item>CJURO  LLANOCCA   HELBERT ERNESTO</item>
+        <item>VEGA  REYES RODRIGO ELIAS</item>
+        <item>LAZARO  ROSALES EDGAR PERCY</item>
+        <item>VILLEGAS MARCELO ANA MELVA</item>
+        <item>RIVAS ASTO MAGDALENA</item>
+    </string-array>
+
+    <string-array name="OperadoresC">
+        <item>BRUNO ROJAS ELMER RAUL</item>
+        <item>CARHUACHIN NAVARRO JOEL IVAN</item>
+        <item>CASTRO  PACHAO ELVIS EDILBERTO</item>
+        <item>CCOSCCO HUAMANI CRISTIAM</item>
+        <item>CHALCO  CHAVEZ  WILMAR ADALIN</item>
+        <item>CHAMBILLA  CHURA  ABDON</item>
+        <item>CHAVEZ MARCELO RONALD DANNY</item>
+        <item>ESPINOZA GOMEZ UBALDO RICARDO</item>
+        <item>FLORES  SALAS HENRY WILSON</item>
+        <item>HUAMANÍ FLORES ABRAHAM</item>
+        <item>HUAYTA HUAYTA ALFREDO LUIS</item>
+        <item>LARICO QUISPE HERBERT</item>
+        <item>MACHACA  QUISPE JORGE EDGAR</item>
+        <item>MORAN  RAMOS RENE JUSTO</item>
+        <item>MUÑOZ  HUALLA DANIELA</item>
+        <item>QUISPE  PAUCCARA ANICETO PERCY</item>
+        <item>SALAZAR ASCENCIO WILSON</item>
+        <item>SILVESTRE RAPRI ELVIS MOISES</item>
+        <item>SUYO  TUNQUE  YURI</item>
+        <item>VALDIVIESO  LAUREANO OSCAR WILLY</item>
+        <item>VELASCO  CCALLO  YONATHAN EDGAR</item>
+        <item>CORDOVA  NORABUENA  HITLER</item>
+        <item>LLASA HANCCONAIRA FREDY</item>
+        <item>MOLINA  CARDENAS FROYLAN</item>
+        <item>CALSINA QUISPE ANGEL</item>
+
+
+    </string-array>
+
+    <string-array name="OrigenMineral">
+        <item>Carguio #1</item>
+        <item>Carguio #2</item>
+        <item>Carguio #3</item>
+        <item>Carguio #4</item>
+        <item>Carguio #5</item>
+        <item>Carguio #6</item>
+        <item>Carguio #7</item>
+        <item>Carguio #8</item>
+        <item>Carguio #9</item>
+        <item>Carguio #10</item>
+        <item>Carguio #11</item>
+        <item>Carguio #12</item>
+        <item>Carguio #13</item>
+        <item>Carguio #14</item>
+        <item>Carguio #15</item>
+        <item>Carguio #16</item>
+        <item>Carguio #17</item>
+        <item>Carguio #18</item>
+        <item>Carguio #19</item>
+        <item>Carguio #20</item>
+    </string-array>
+
+    <string-array name="OrigenMineralCancha">
+        <item>Garita 4</item>
+    </string-array>
+
+    <string-array name="OrigenRelave">
+        <item>Cancha Relave Selene</item>
+        <item>Planta R.P Pallancata</item>
+    </string-array>
+
+    <string-array name="OrigenDesmonte">
+        <item>Carguio #1</item>
+        <item>Carguio #2</item>
+        <item>Carguio #3</item>
+        <item>Carguio #4</item>
+        <item>Carguio #5</item>
+        <item>Carguio #6</item>
+        <item>Carguio #7</item>
+        <item>Carguio #8</item>
+        <item>Carguio #9</item>
+        <item>Carguio #10</item>
+        <item>Carguio #11</item>
+        <item>Carguio #12</item>
+        <item>Carguio #13</item>
+        <item>Carguio #14</item>
+        <item>Carguio #15</item>
+        <item>Carguio #16</item>
+        <item>Carguio #17</item>
+        <item>Carguio #18</item>
+        <item>Carguio #19</item>
+        <item>Carguio #20</item>
+        <item>Desmontera Pallancata</item>
+    </string-array>
+
+    <string-array name="OrigenRellenoCementado">
+        <item>Planta R/C Iesacom</item>
+    </string-array>
+
+    <string-array name="OrigenAgregado">
+        <item>Desmontera Pallancata</item>
+        <item>Cancha Mineral</item>
+    </string-array>
+
+    <string-array name="OrigenVarios">
+        <item>Cancha Conmina</item>
+        <item>Planta Iesacom</item>
+    </string-array>
+
+    <string-array name="DestinoMineral">
+        <item>Tolva Grueso</item>
+        <item>Garita 4</item>
+    </string-array>
+
+    <string-array name="DestinoMineralCancha">
+        <item>Tolva Grueso</item>
+    </string-array>
+
+    <string-array name="DestinoRelave">
+        <item>Planta R.H Ranichico</item>
+        <item>Planta R.P Ranichico</item>
+    </string-array>
+
+    <string-array name="DestinoDesmonte">
+        <item>Desmontera Pallancata</item>
+        <item>Carguio #17</item>
+        <item>Carguio #18</item>
+        <item>Carguio #19</item>
+        <item>Carguio #20</item>
+    </string-array>
+
+    <string-array name="DestinoRellenoCementado">
+        <item>Camara 19</item>
+        <item>Camara 20</item>
+        <item>Camara 21</item>
+    </string-array>
+
+    <string-array name="DestinoAgregado">
+        <item>Planta Iesacom</item>
+        <item>Cancha Mineral</item>
+        <item>Planta Iesacom</item>
+    </string-array>
+
+    <string-array name="DestinoVarios">
+        <item>Ranichico</item>
+        <item>Desmontera Pallancata</item>
+        <item>Planta R.H Ranichico</item>
+    </string-array>
+
+</resources>
