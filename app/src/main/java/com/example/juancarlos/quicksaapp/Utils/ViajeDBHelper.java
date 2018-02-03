@@ -59,12 +59,7 @@ public class ViajeDBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    void deleteViajeRecord(long id, Context context) {
-        SQLiteDatabase db = this.getWritableDatabase();
 
-        db.execSQL("DELETE FROM " + TABLA_NOMBRE + "WHERE _id='" + id + "'");
-        Toast.makeText(context, "Borrado Correctamente.", Toast.LENGTH_SHORT).show();
-    }
 
     public List<Viaje> peopleList() {
         String query;
@@ -90,6 +85,54 @@ public class ViajeDBHelper extends SQLiteOpenHelper {
 
 
         return personLinkedList;
+    }
+
+    /**
+     * Query only 1 record
+     **/
+    public Viaje getViaje(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT  * FROM " + TABLA_NOMBRE + " WHERE _id=" + id;
+        Cursor cursor = db.rawQuery(query, null);
+
+        Viaje receivedViaje = new Viaje();
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+
+            receivedViaje.setOperador(cursor.getString(cursor.getColumnIndex(COLUMNA_OPERADOR)));
+            receivedViaje.setMaterial(cursor.getString(cursor.getColumnIndex(COLUMNA_MATERIAL)));
+            receivedViaje.setOrigen(cursor.getString(cursor.getColumnIndex(COLUMNA_ORIGEN)));
+            receivedViaje.setDestino(cursor.getString(cursor.getColumnIndex(COLUMNA_DESTINO)));
+        }
+
+
+        return receivedViaje;
+
+
+    }
+
+
+    /**
+     * delete record
+     **/
+    public void deleteViajeRecord(long id, Context context) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("DELETE FROM " + TABLA_NOMBRE + " WHERE _id='" + id + "'");
+        Toast.makeText(context, "Borrado Correctamente", Toast.LENGTH_SHORT).show();
+
+    }
+
+    /**
+     * update record
+     **/
+    public void updateViajeRecord(long viajeId, Context context, Viaje updatedviaje) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        //you can use the constants above instead of typing the column names
+        db.execSQL("UPDATE  " + TABLA_NOMBRE + " SET operador ='" + updatedviaje.getOperador() + "', material ='" + updatedviaje.getMaterial() + "', origen ='" + updatedviaje.getOrigen() + "', destino ='" + updatedviaje.getDestino() + "'  WHERE _id='" + viajeId + "'");
+        Toast.makeText(context, "Updated successfully.", Toast.LENGTH_SHORT).show();
+
+
     }
 
 }

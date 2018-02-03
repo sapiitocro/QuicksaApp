@@ -5,12 +5,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.juancarlos.quicksaapp.ActualizarViajeActivity;
 import com.example.juancarlos.quicksaapp.Model.Viaje;
 import com.example.juancarlos.quicksaapp.R;
 
@@ -79,7 +81,7 @@ public class ViajeAdapter extends RecyclerView.Adapter<ViajeAdapter.ViewHolder> 
                 builder.setPositiveButton("Actualizar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        ActualizarActivity();
+                        ActualizarActivity(viaje.getId());
                     }
                 });
                 builder.setNeutralButton("Borrar", new DialogInterface.OnClickListener() {
@@ -107,7 +109,10 @@ public class ViajeAdapter extends RecyclerView.Adapter<ViajeAdapter.ViewHolder> 
     }
 
 
-    private void ActualizarActivity() {
+    private void ActualizarActivity(long viajeId) {
+        Intent gotoUpdate = new Intent(mContext, ActualizarViajeActivity.class);
+        gotoUpdate.putExtra("USER_ID", viajeId);
+        mContext.startActivity(gotoUpdate);
 
     }
 

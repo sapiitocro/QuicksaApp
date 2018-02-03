@@ -18,8 +18,6 @@ public class NuevoViajeActivity extends AppCompatActivity {
     private Spinner spinnerGuardia;
     private Spinner spinnerOperador;
     private Spinner spinnerMaterial;
-    private ViajeDBHelper dbHelper;
-    private FloatingActionButton actionButton;
 
 
     @Override
@@ -31,13 +29,14 @@ public class NuevoViajeActivity extends AppCompatActivity {
         spinnerDestino = findViewById(R.id.IdDestino);
         spinnerGuardia = findViewById(R.id.IdGuardia);
         spinnerOperador = findViewById(R.id.IdConductor);
-        actionButton = findViewById(R.id.fab);
+        FloatingActionButton actionButton = findViewById(R.id.fab);
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 GuardarViaje();
             }
         });
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.Materiales,
@@ -105,7 +104,7 @@ public class NuevoViajeActivity extends AppCompatActivity {
         String destino = spinnerDestino.getSelectedItem().toString();
         String material = spinnerMaterial.getSelectedItem().toString();
 
-        dbHelper = new ViajeDBHelper(this);
+        ViajeDBHelper dbHelper = new ViajeDBHelper(this);
 
         Viaje viaje = new Viaje(operador, guardia, origen, destino, material);
         dbHelper.saveNewViaje(viaje);
