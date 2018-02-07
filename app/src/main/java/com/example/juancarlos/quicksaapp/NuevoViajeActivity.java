@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.juancarlos.quicksaapp.Model.Viaje;
@@ -18,6 +19,9 @@ public class NuevoViajeActivity extends AppCompatActivity {
     private Spinner spinnerGuardia;
     private Spinner spinnerOperador;
     private Spinner spinnerMaterial;
+    private EditText editTextPbruto;
+    private EditText editTextPneto;
+    private EditText editTextTara;
 
 
     @Override
@@ -29,6 +33,9 @@ public class NuevoViajeActivity extends AppCompatActivity {
         spinnerDestino = findViewById(R.id.IdDestino);
         spinnerGuardia = findViewById(R.id.IdGuardia);
         spinnerOperador = findViewById(R.id.IdConductor);
+        editTextPbruto = findViewById(R.id.IdPesoB);
+        editTextPneto = findViewById(R.id.IdNeto);
+        editTextTara = findViewById(R.id.IdTara);
         FloatingActionButton actionButton = findViewById(R.id.fab);
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,10 +110,19 @@ public class NuevoViajeActivity extends AppCompatActivity {
         String origen = spinnerOrigen.getSelectedItem().toString();
         String destino = spinnerDestino.getSelectedItem().toString();
         String material = spinnerMaterial.getSelectedItem().toString();
+        String pbruto = editTextPbruto.getText().toString();
+        String tara = editTextTara.getText().toString();
+
+        int sumapbruto = Integer.parseInt(pbruto);
+        int sumatara = Integer.parseInt(tara);
+
+        int neto = sumapbruto - sumatara;
+
+        String pneto = String.valueOf(neto);
 
         ViajeDBHelper dbHelper = new ViajeDBHelper(this);
 
-        Viaje viaje = new Viaje(operador, guardia, origen, destino, material);
+        Viaje viaje = new Viaje(operador, guardia, origen, destino, material, pbruto, pneto, tara);
         dbHelper.saveNewViaje(viaje);
 
         Regresar();

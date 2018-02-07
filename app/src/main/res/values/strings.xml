@@ -60,6 +60,7 @@
     </string-array>
 
     <string-array name="OperadoresB">
+        <item>MOLINA CARDENAS FROYLAN</item>
         <item>CABANA  CHARCA DAVID</item>
         <item>CALAPUJA RIOS  LYAKHOV ALEXANDER</item>
         <item>CONDORI  JORDAN VICENTE</item>
@@ -215,7 +216,6 @@
     <string-array name="DestinoAgregado">
         <item>Planta Iesacom</item>
         <item>Cancha Mineral</item>
-        <item>Planta Iesacom</item>
     </string-array>
 
     <string-array name="DestinoVarios">

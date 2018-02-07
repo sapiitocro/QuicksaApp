@@ -21,8 +21,12 @@ public class ViajeDBHelper extends SQLiteOpenHelper {
     private static final String TABLA_NOMBRE = "Viaje";
     private static final String COLUMNA_ID = "_id";
     private static final String COLUMNA_OPERADOR = "operador";
+    private static final String COLUMNA_GUARDIA = "guardia";
     private static final String COLUMNA_MATERIAL = "material";
     private static final String COLUMNA_ORIGEN = "origen";
+    private static final String COLUMNA_PBRUTO = "pbruto";
+    private static final String COLUMNA_PNETO = "pneto";
+    private static final String COLUMNA_TARA = "tara";
     private static final String COLUMNA_DESTINO = "destino";
 
     public ViajeDBHelper(Context context) {
@@ -34,8 +38,12 @@ public class ViajeDBHelper extends SQLiteOpenHelper {
         db.execSQL(" CREATE TABLE " + TABLA_NOMBRE + " (" +
                 COLUMNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMNA_OPERADOR + " TEXT NOT NULL, " +
+                COLUMNA_GUARDIA + " TEXT NOT NULL, " +
                 COLUMNA_MATERIAL + " TEXT NOT NULL, " +
                 COLUMNA_ORIGEN + " TEXT NOT NULL, " +
+                COLUMNA_PBRUTO + " TEXT NOT NULL, " +
+                COLUMNA_PNETO + " TEXT NOT NULL, " +
+                COLUMNA_TARA + " TEXT NOT NULL, " +
                 COLUMNA_DESTINO + " TEXT NOT NULL);"
         );
 
@@ -51,8 +59,12 @@ public class ViajeDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMNA_OPERADOR, viaje.getOperador());
+        values.put(COLUMNA_GUARDIA, viaje.getGuardia());
         values.put(COLUMNA_MATERIAL, viaje.getMaterial());
         values.put(COLUMNA_ORIGEN, viaje.getOrigen());
+        values.put(COLUMNA_PBRUTO, viaje.getPbruto());
+        values.put(COLUMNA_PNETO, viaje.getPneto());
+        values.put(COLUMNA_TARA, viaje.getTara());
         values.put(COLUMNA_DESTINO, viaje.getDestino());
 
         db.insert(TABLA_NOMBRE, null, values);
@@ -76,9 +88,13 @@ public class ViajeDBHelper extends SQLiteOpenHelper {
 
                 viaje.setId(cursor.getLong(cursor.getColumnIndex(COLUMNA_ID)));
                 viaje.setOperador(cursor.getString(cursor.getColumnIndex(COLUMNA_OPERADOR)));
+                viaje.setGuardia(cursor.getString(cursor.getColumnIndex(COLUMNA_GUARDIA)));
                 viaje.setMaterial(cursor.getString(cursor.getColumnIndex(COLUMNA_MATERIAL)));
                 viaje.setOrigen(cursor.getString(cursor.getColumnIndex(COLUMNA_ORIGEN)));
                 viaje.setDestino(cursor.getString(cursor.getColumnIndex(COLUMNA_DESTINO)));
+                viaje.setPbruto(cursor.getString(cursor.getColumnIndex(COLUMNA_PBRUTO)));
+                viaje.setPneto(cursor.getString(cursor.getColumnIndex(COLUMNA_PNETO)));
+                viaje.setTara(cursor.getString(cursor.getColumnIndex(COLUMNA_TARA)));
                 personLinkedList.add(viaje);
             } while (cursor.moveToNext());
         }
@@ -87,35 +103,11 @@ public class ViajeDBHelper extends SQLiteOpenHelper {
         return personLinkedList;
     }
 
-    /**
-     * Query only 1 record
-     **/
-    public Viaje getViaje(long id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT  * FROM " + TABLA_NOMBRE + " WHERE _id=" + id;
-        Cursor cursor = db.rawQuery(query, null);
-
-        Viaje receivedViaje = new Viaje();
-        if (cursor.getCount() > 0) {
-            cursor.moveToFirst();
-
-            receivedViaje.setOperador(cursor.getString(cursor.getColumnIndex(COLUMNA_OPERADOR)));
-            receivedViaje.setMaterial(cursor.getString(cursor.getColumnIndex(COLUMNA_MATERIAL)));
-            receivedViaje.setOrigen(cursor.getString(cursor.getColumnIndex(COLUMNA_ORIGEN)));
-            receivedViaje.setDestino(cursor.getString(cursor.getColumnIndex(COLUMNA_DESTINO)));
-        }
-
-
-        return receivedViaje;
-
-
-    }
-
 
     /**
      * delete record
      **/
-    public void deleteViajeRecord(long id, Context context) {
+    void deleteViajeRecord(long id, Context context) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         db.execSQL("DELETE FROM " + TABLA_NOMBRE + " WHERE _id='" + id + "'");
@@ -129,7 +121,16 @@ public class ViajeDBHelper extends SQLiteOpenHelper {
     public void updateViajeRecord(long viajeId, Context context, Viaje updatedviaje) {
         SQLiteDatabase db = this.getWritableDatabase();
         //you can use the constants above instead of typing the column names
-        db.execSQL("UPDATE  " + TABLA_NOMBRE + " SET operador ='" + updatedviaje.getOperador() + "', material ='" + updatedviaje.getMaterial() + "', origen ='" + updatedviaje.getOrigen() + "', destino ='" + updatedviaje.getDestino() + "'  WHERE _id='" + viajeId + "'");
+        db.execSQL("UPDATE  " + TABLA_NOMBRE + " SET operador ='" + updatedviaje.getOperador() +
+                "', guardia ='" + updatedviaje.getGuardia() +
+                "', material ='" + updatedviaje.getMaterial() +
+                "', origen ='" + updatedviaje.getOrigen() +
+                "', destino ='" + updatedviaje.getDestino() +
+                "', pbruto ='" + updatedviaje.getPbruto() +
+                "', pneto ='" + updatedviaje.getPneto() +
+                "', tara ='" + updatedviaje.getTara() +
+                "'  WHERE _id='" + viajeId + "'");
+
         Toast.makeText(context, "Updated successfully.", Toast.LENGTH_SHORT).show();
 
 

@@ -17,6 +17,8 @@ import com.example.juancarlos.quicksaapp.Model.Viaje;
 import com.example.juancarlos.quicksaapp.R;
 
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 
@@ -30,6 +32,9 @@ public class ViajeAdapter extends RecyclerView.Adapter<ViajeAdapter.ViewHolder> 
         TextView Material;
         TextView Origen;
         TextView Destino;
+        TextView Pbruto;
+        TextView Pneto;
+        TextView Tara;
 
         public View layout;
 
@@ -42,6 +47,9 @@ public class ViajeAdapter extends RecyclerView.Adapter<ViajeAdapter.ViewHolder> 
             Material = v.findViewById(R.id.idmaterial);
             Origen = v.findViewById(R.id.idorigen);
             Destino = v.findViewById(R.id.iddestino);
+            Pbruto = v.findViewById(R.id.idpbruto);
+            Pneto = v.findViewById(R.id.idpneto);
+
         }
     }
 
@@ -70,6 +78,8 @@ public class ViajeAdapter extends RecyclerView.Adapter<ViajeAdapter.ViewHolder> 
         holder.Material.setText("Material: " + viaje.getMaterial());
         holder.Origen.setText("Origen: " + viaje.getOrigen());
         holder.Destino.setText("Destino: " + viaje.getDestino());
+        holder.Pbruto.setText("Peso Bruto: " + viaje.getPbruto());
+        holder.Pneto.setText("Peso Neto: " + viaje.getPneto());
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
 

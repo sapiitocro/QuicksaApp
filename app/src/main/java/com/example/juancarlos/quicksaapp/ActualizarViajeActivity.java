@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.juancarlos.quicksaapp.Model.Viaje;
 import com.example.juancarlos.quicksaapp.Utils.ViajeDBHelper;
+
+import javax.crypto.interfaces.PBEKey;
 
 public class ActualizarViajeActivity extends AppCompatActivity {
 
@@ -19,6 +22,9 @@ public class ActualizarViajeActivity extends AppCompatActivity {
     private Spinner Origen;
     private Spinner Destino;
     private Spinner Guardia;
+    private EditText Pbruto;
+    private EditText Pneto;
+    private EditText Tara;
 
     private ViajeDBHelper dbHelper;
     private long receivedViajeId;
@@ -32,6 +38,9 @@ public class ActualizarViajeActivity extends AppCompatActivity {
         Origen = findViewById(R.id.IdOrigenActualizar);
         Destino = findViewById(R.id.IdDestinoActualizar);
         Guardia = findViewById(R.id.IdGuardiaActualizar);
+        Pbruto = findViewById(R.id.IdPesoBActualizar);
+        Pneto = findViewById(R.id.IdNetoActualizar);
+        Tara = findViewById(R.id.IdTaraActualizar);
         FloatingActionButton button = findViewById(R.id.fabActualizar);
 
         dbHelper = new ViajeDBHelper(this);
@@ -117,8 +126,12 @@ public class ActualizarViajeActivity extends AppCompatActivity {
         String origen = Origen.getSelectedItem().toString().trim();
         String destino = Destino.getSelectedItem().toString().trim();
         String guardia = Guardia.getSelectedItem().toString().trim();
+        String pbruto = Pbruto.getText().toString().trim();
+        String pneto = Pneto.getText().toString().trim();
+        String tara = Tara.getText().toString().trim();
 
-        Viaje updateViaje = new Viaje(operador, guardia, origen, destino, material);
+
+        Viaje updateViaje = new Viaje(operador, guardia, origen, destino, material, pbruto, pneto, tara);
         dbHelper.updateViajeRecord(receivedViajeId, this, updateViaje);
         Regresar();
 
