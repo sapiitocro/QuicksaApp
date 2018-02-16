@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.juancarlos.quicksaapp.Model.Viaje;
 import com.example.juancarlos.quicksaapp.Utils.ViajeDBHelper;
@@ -20,7 +22,7 @@ public class NuevoViajeActivity extends AppCompatActivity {
     private Spinner spinnerOperador;
     private Spinner spinnerMaterial;
     private EditText editTextPbruto;
-    private EditText editTextPneto;
+    private TextView editTextPneto;
     private EditText editTextTara;
 
 
@@ -37,6 +39,14 @@ public class NuevoViajeActivity extends AppCompatActivity {
         editTextPneto = findViewById(R.id.IdNeto);
         editTextTara = findViewById(R.id.IdTara);
         FloatingActionButton actionButton = findViewById(R.id.fab);
+
+        editTextPneto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Neto();
+            }
+        });
+
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,19 +123,33 @@ public class NuevoViajeActivity extends AppCompatActivity {
         String pbruto = editTextPbruto.getText().toString();
         String tara = editTextTara.getText().toString();
 
-        int sumapbruto = Integer.parseInt(pbruto);
-        int sumatara = Integer.parseInt(tara);
 
-        int neto = sumapbruto - sumatara;
+        try {
+            int sumapbruto = Integer.parseInt(pbruto);
+            int sumatara = Integer.parseInt(tara);
 
-        String pneto = String.valueOf(neto);
 
-        ViajeDBHelper dbHelper = new ViajeDBHelper(this);
+            int neto = sumapbruto - sumatara;
+            if (neto >= 0) {
 
-        Viaje viaje = new Viaje(operador, guardia, origen, destino, material, pbruto, pneto, tara);
-        dbHelper.saveNewViaje(viaje);
+                String pneto = String.valueOf(neto);
 
-        Regresar();
+                ViajeDBHelper dbHelper = new ViajeDBHelper(this);
+
+                Viaje viaje = new Viaje(operador, guardia, origen, destino, material, pbruto, pneto, tara);
+                dbHelper.saveNewViaje(viaje);
+
+                Regresar();
+            } else {
+                Toast.makeText(this, "RESULTADO INVALIDO, VERIFIQUE EL PESO BRUTO Y/O LA TARA", Toast.LENGTH_SHORT).show();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "RESULTADO INVALIDO, VERIFIQUE EL PESO BRUTO Y/O LA TARA", Toast.LENGTH_SHORT).show();
+        }
+
+
 
 
     }
@@ -134,4 +158,26 @@ public class NuevoViajeActivity extends AppCompatActivity {
         startActivity(new Intent(NuevoViajeActivity.this, MainActivity.class));
     }
 
+
+    public void Neto() {
+        try {
+            String pbruto = editTextPbruto.getText().toString();
+            String tara = editTextTara.getText().toString();
+            int sumapbruto = Integer.parseInt(pbruto);
+            int sumatara = Integer.parseInt(tara);
+
+            int neto = sumapbruto - sumatara;
+            if (neto >= 0) {
+                String pneto = String.valueOf(neto);
+                editTextPneto.setText(pneto);
+            } else {
+                Toast.makeText(this, "RESULTADO INVALIDO, VERIFIQUE EL PESO BRUTO Y/O LA TARA", Toast.LENGTH_SHORT).show();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "RESULTADO INVALIDO, VERIFIQUE EL PESO BRUTO Y/O LA TARA", Toast.LENGTH_SHORT).show();
+        }
+
+    }
 }

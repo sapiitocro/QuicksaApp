@@ -256,14 +256,15 @@
                 android:layout_marginStart="10dp"
                 android:text="@string/peso_neto" />
 
-            <EditText
+            <TextView
                 android:id="@+id/IdNetoActualizar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:editable="false"
                 android:ems="10"
-                android:inputType="number" />
+                android:text="Presione para calcular el neto" />
         </LinearLayout>
 
 

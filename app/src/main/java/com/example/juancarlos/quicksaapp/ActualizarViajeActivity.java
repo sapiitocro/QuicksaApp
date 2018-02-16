@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.juancarlos.quicksaapp.Model.Viaje;
 import com.example.juancarlos.quicksaapp.Utils.ViajeDBHelper;
@@ -23,11 +25,12 @@ public class ActualizarViajeActivity extends AppCompatActivity {
     private Spinner Destino;
     private Spinner Guardia;
     private EditText Pbruto;
-    private EditText Pneto;
+    private TextView Pneto;
     private EditText Tara;
 
     private ViajeDBHelper dbHelper;
     private long receivedViajeId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,13 @@ public class ActualizarViajeActivity extends AppCompatActivity {
         Tara = findViewById(R.id.IdTaraActualizar);
         FloatingActionButton button = findViewById(R.id.fabActualizar);
 
+        Pneto.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Neto();
+            }
+        });
         dbHelper = new ViajeDBHelper(this);
 
         try {
@@ -100,6 +110,7 @@ public class ActualizarViajeActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Guardia.setAdapter(adapter1);
+
         Guardia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -127,19 +138,62 @@ public class ActualizarViajeActivity extends AppCompatActivity {
         String destino = Destino.getSelectedItem().toString().trim();
         String guardia = Guardia.getSelectedItem().toString().trim();
         String pbruto = Pbruto.getText().toString().trim();
-        String pneto = Pneto.getText().toString().trim();
         String tara = Tara.getText().toString().trim();
 
 
-        Viaje updateViaje = new Viaje(operador, guardia, origen, destino, material, pbruto, pneto, tara);
-        dbHelper.updateViajeRecord(receivedViajeId, this, updateViaje);
-        Regresar();
+        try {
+            int sumapbruto = Integer.parseInt(pbruto);
+            int sumatara = Integer.parseInt(tara);
+
+
+            int neto = sumapbruto - sumatara;
+            if (neto >= 0) {
+
+                String paneto = String.valueOf(neto);
+
+                Viaje updateViaje = new Viaje(operador, guardia, origen, destino, material, pbruto, paneto, tara);
+                dbHelper.updateViajeRecord(receivedViajeId, this, updateViaje);
+
+                //
+
+                Regresar();
+            } else {
+                Toast.makeText(this, "RESULTADO INVALIDO, VERIFIQUE EL PESO BRUTO Y/O LA TARA", Toast.LENGTH_SHORT).show();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "RESULTADO INVALIDO, VERIFIQUE EL PESO BRUTO Y/O LA TARA", Toast.LENGTH_SHORT).show();
+        }
+
 
 
     }
 
     private void Regresar() {
         startActivity(new Intent(this, MainActivity.class));
+    }
+
+    public void Neto() {
+        try {
+            String pbruto = Pbruto.getText().toString();
+            String tara = Tara.getText().toString();
+            int sumapbruto = Integer.parseInt(pbruto);
+            int sumatara = Integer.parseInt(tara);
+
+            int neto = sumapbruto - sumatara;
+            if (neto >= 0) {
+                String pneto = String.valueOf(neto);
+                Pneto.setText(pneto);
+            } else {
+                Toast.makeText(this, "RESULTADO INVALIDO, VERIFIQUE EL PESO BRUTO Y/O LA TARA", Toast.LENGTH_SHORT).show();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "RESULTADO INVALIDO, VERIFIQUE EL PESO BRUTO Y/O LA TARA", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 }

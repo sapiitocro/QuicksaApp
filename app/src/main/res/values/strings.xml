@@ -16,6 +16,10 @@
     <string name="guardia">Guardia</string>
     <string name="cancelar">CANCELAR</string>
     <string name="add">Add</string>
+    <string name="bluetooth">Bluetooth</string>
+    <string name="none_paired">No dispositivos emparejados</string>
+    <string name="none_found">No se encontraros dispositivos</string>
+
     <string name="filter_spinner">Filter Spinner</string>
 
     <string-array name="Materiales">
@@ -40,23 +44,19 @@
 
     <string-array name="OperadoresA">
         <item>ALEJO CALIZAYA WILBER</item>
-        <item>BECERRAOVIEDOAMALFI OMAR</item>
-        <item>CARDENASALHUAYRUBEN</item>
-        <item>CASTILLOQUISPEGERMAN</item>
-        <item>CHAVEZ MARCELOJHONATAN DANNY</item>
+        <item>BECERRA OVIEDO AMALFI OMAR</item>
+        <item>CARDENAS ALHUAY RUBEN</item>
+        <item>CASTILLO QUISPE GERMAN</item>
+        <item>CHAVEZ MARCELO JHONATAN DANNY</item>
         <item>CHULLUNQUIA CHAÑI ROGER</item>
         <item>CONDOR  GARCIA  VICTOR MANUEL</item>
         <item>FLORES  YANQUI  BLAS MIKO</item>
-        <item>GALINDO GALVAN RICHARD JONATHAN</item>
         <item>LOPEZ SANCHEZ MARCOS</item>
         <item>MARIN CARI DARIO</item>
-        <item>MOJONERO TITO VLADIMIR NEPTALI</item>
         <item>MORALES MEJIA LUIS ALBERTO</item>
         <item>NINAHUAMAN ALCACAHUA ESTANISLAO SANTOS</item>
         <item>QUISPE  TACUMA GERMAN ANDRES</item>
-        <item>RAMOS REZA ELVIS</item>
         <item>VILCA  PARI ERASMO</item>
-        <item>TAYPE TANCAYLLO  FREDY RONAL</item>
     </string-array>
 
     <string-array name="OperadoresB">
@@ -77,12 +77,9 @@
         <item>YBAÑIZ  PARICAHUA AMERICO</item>
         <item>CRUCES RAMOS GONZALO MANUEL</item>
         <item>COAQUIRA   SUCLLE  WILBERTO ESTEBAN</item>
-        <item>CONDORI  HUACARPUMA  JUAN  JOSE</item>
         <item>CJURO  LLANOCCA   HELBERT ERNESTO</item>
         <item>VEGA  REYES RODRIGO ELIAS</item>
         <item>LAZARO  ROSALES EDGAR PERCY</item>
-        <item>VILLEGAS MARCELO ANA MELVA</item>
-        <item>RIVAS ASTO MAGDALENA</item>
     </string-array>
 
     <string-array name="OperadoresC">
@@ -94,22 +91,14 @@
         <item>CHAMBILLA  CHURA  ABDON</item>
         <item>CHAVEZ MARCELO RONALD DANNY</item>
         <item>ESPINOZA GOMEZ UBALDO RICARDO</item>
-        <item>FLORES  SALAS HENRY WILSON</item>
-        <item>HUAMANÍ FLORES ABRAHAM</item>
         <item>HUAYTA HUAYTA ALFREDO LUIS</item>
-        <item>LARICO QUISPE HERBERT</item>
         <item>MACHACA  QUISPE JORGE EDGAR</item>
-        <item>MORAN  RAMOS RENE JUSTO</item>
-        <item>MUÑOZ  HUALLA DANIELA</item>
         <item>QUISPE  PAUCCARA ANICETO PERCY</item>
-        <item>SALAZAR ASCENCIO WILSON</item>
         <item>SILVESTRE RAPRI ELVIS MOISES</item>
         <item>SUYO  TUNQUE  YURI</item>
-        <item>VALDIVIESO  LAUREANO OSCAR WILLY</item>
         <item>VELASCO  CCALLO  YONATHAN EDGAR</item>
         <item>CORDOVA  NORABUENA  HITLER</item>
         <item>LLASA HANCCONAIRA FREDY</item>
-        <item>MOLINA  CARDENAS FROYLAN</item>
         <item>CALSINA QUISPE ANGEL</item>
 
 
