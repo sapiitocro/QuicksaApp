@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.juancarlos.quicksaapp.Model.Viaje;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -69,6 +70,36 @@ public class ViajeDBHelper extends SQLiteOpenHelper {
 
         db.insert(TABLA_NOMBRE, null, values);
         db.close();
+    }
+
+    public ArrayList<Viaje> peopleList1() {
+        String query;
+
+        query = "SELECT  * FROM " + TABLA_NOMBRE;
+        ArrayList<Viaje> personLinkedList = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(query, null);
+        Viaje viaje;
+
+        if (cursor.moveToFirst()) {
+            do {
+                viaje = new Viaje();
+
+                viaje.setId(cursor.getLong(cursor.getColumnIndex(COLUMNA_ID)));
+                viaje.setOperador(cursor.getString(cursor.getColumnIndex(COLUMNA_OPERADOR)));
+                viaje.setGuardia(cursor.getString(cursor.getColumnIndex(COLUMNA_GUARDIA)));
+                viaje.setMaterial(cursor.getString(cursor.getColumnIndex(COLUMNA_MATERIAL)));
+                viaje.setOrigen(cursor.getString(cursor.getColumnIndex(COLUMNA_ORIGEN)));
+                viaje.setDestino(cursor.getString(cursor.getColumnIndex(COLUMNA_DESTINO)));
+                viaje.setPbruto(cursor.getString(cursor.getColumnIndex(COLUMNA_PBRUTO)));
+                viaje.setPneto(cursor.getString(cursor.getColumnIndex(COLUMNA_PNETO)));
+                viaje.setTara(cursor.getString(cursor.getColumnIndex(COLUMNA_TARA)));
+                personLinkedList.add(viaje);
+            } while (cursor.moveToNext());
+        }
+
+
+        return personLinkedList;
     }
 
 

@@ -142,11 +142,11 @@ public class ActualizarViajeActivity extends AppCompatActivity {
 
 
         try {
-            int sumapbruto = Integer.parseInt(pbruto);
-            int sumatara = Integer.parseInt(tara);
+            Double sumapbruto = Double.parseDouble(pbruto);
+            Double sumatara = Double.parseDouble(tara);
 
 
-            int neto = sumapbruto - sumatara;
+            Double neto = sumapbruto - sumatara;
             if (neto >= 0) {
 
                 String paneto = String.valueOf(neto);

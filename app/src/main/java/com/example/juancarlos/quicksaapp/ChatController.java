@@ -11,9 +11,12 @@ import android.os.Handler;
 import android.os.Message;
 
 
+import com.example.juancarlos.quicksaapp.Model.Viaje;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 import java.util.UUID;
 
 public class ChatController {

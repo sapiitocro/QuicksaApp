@@ -154,15 +154,15 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/IdtxtDistancia"
+                android:id="@+id/IdtxtFecha"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
-                android:text="@string/distancia" />
+                android:text="@string/fecha" />
 
             <EditText
-                android:id="@+id/IdDistancia"
+                android:id="@+id/IdFecha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -204,7 +204,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="numberDecimal" />
         </LinearLayout>
 
 
@@ -230,7 +230,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="numberDecimal" />
         </LinearLayout>
 
     </LinearLayout>

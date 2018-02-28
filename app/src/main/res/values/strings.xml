@@ -51,6 +51,8 @@
         <item>CHULLUNQUIA CHAÑI ROGER</item>
         <item>CONDOR  GARCIA  VICTOR MANUEL</item>
         <item>FLORES  YANQUI  BLAS MIKO</item>
+        <item>RAMIREZ HUAMAN DAVID ANGEL</item>
+        <item>ALDERETE CAMPOMANEZ MARCO ANTONIO</item>
         <item>LOPEZ SANCHEZ MARCOS</item>
         <item>MARIN CARI DARIO</item>
         <item>MORALES MEJIA LUIS ALBERTO</item>
@@ -168,6 +170,7 @@
         <item>Desmontera Pallancata</item>
         <item>Cancha Mineral</item>
     </string-array>
+    A
 
     <string-array name="OrigenVarios">
         <item>Cancha Conmina</item>

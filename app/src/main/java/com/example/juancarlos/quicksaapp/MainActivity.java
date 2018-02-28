@@ -1,5 +1,6 @@
 package com.example.juancarlos.quicksaapp;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.bluetooth.BluetoothAdapter;
@@ -8,13 +9,18 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Handler;
 import android.os.Message;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,10 +32,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.juancarlos.quicksaapp.Model.Viaje;
 import com.example.juancarlos.quicksaapp.Utils.ViajeAdapter;
 import com.example.juancarlos.quicksaapp.Utils.ViajeDBHelper;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
     private ViajeAdapter adapter;
     private Dialog dialog;
     private Button btnConnect;
+    private FloatingActionButton btnRefresh;
+    private FloatingActionButton btnConnect1;
+
+
 
     private TextInputLayout inputLayout;
     private ArrayAdapter<String> chatAdapter;
@@ -63,9 +76,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mRecyclerView = findViewById(R.id.recyclerView);
         btnConnect = findViewById(R.id.BluetoothScanning);
+        btnConnect1 = findViewById(R.id.fab1);
+        btnRefresh = findViewById(R.id.refresh);
         status = findViewById(R.id.status);
         mRecyclerView.setHasFixedSize(true);
 
+        btnRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Refresh();
+            }
+        });
+        btnConnect1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendMessage();
+            }
+        });
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
@@ -76,10 +103,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Bluetooth no esta diponible!", Toast.LENGTH_SHORT).show();
             finish();
         }
-
-
-
-
     }
 
     private Handler handler = new Handler(new Handler.Callback() {
@@ -98,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                             break;
                         case ChatController.STATE_CONNECTING:
-                            setStatus("Connecting...");
+                            setStatus("Conectando...");
                             try {
                                 btnConnect.setEnabled(false);
                             } catch (Exception e) {
@@ -108,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case ChatController.STATE_LISTEN:
                         case ChatController.STATE_NONE:
-                            setStatus("Not connected");
+                            setStatus("No Conectado");
                             break;
                     }
                     break;
@@ -120,13 +143,29 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case MESSAGE_READ:
                     byte[] readBuf = (byte[]) msg.obj;
-
                     String readMessage = new String(readBuf, 0, msg.arg1);
+                    String str[] = readMessage.split(",");
+                    String operador = str[1];
+                    String guardia = str[2];
+                    String origen = str[4];
+                    String destino = str[5];
+                    String material = str[3];
+                    String pbruto = str[6];
+                    String pneto = str[7];
+                    String tara = str[8];
+                    ViajeDBHelper dbHelper = new ViajeDBHelper(getApplicationContext());
+
+                    Viaje viaje = new Viaje(operador, guardia, origen, destino, material, pbruto, pneto, tara);
+                    dbHelper.saveNewViaje(viaje);
+
+                    Toast.makeText(getApplicationContext(), readMessage,
+                            Toast.LENGTH_SHORT).show();
+
 
                     break;
                 case MESSAGE_DEVICE_OBJECT:
                     connectingDevice = msg.getData().getParcelable(DEVICE_OBJECT);
-                    Toast.makeText(getApplicationContext(), "Connected to " + connectingDevice.getName(),
+                    Toast.makeText(getApplicationContext(), "Conectado a: " + connectingDevice.getName(),
                             Toast.LENGTH_SHORT).show();
                     break;
                 case MESSAGE_TOAST:
@@ -141,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
     private void showPrinterPickDialog() {
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.layout_bluetooth);
-        dialog.setTitle("Bluetooth Devices");
+        dialog.setTitle("Bluetooth Equipos");
 
         if (bluetoothAdapter.isDiscovering()) {
             bluetoothAdapter.cancelDiscovery();
@@ -319,4 +358,57 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    private void sendMessage() {
+        ViajeDBHelper dbHelper = new ViajeDBHelper(this);
+        List<Viaje> message = dbHelper.peopleList1();
+
+
+        if (chatController.getState() != ChatController.STATE_CONNECTED) {
+            Toast.makeText(this, "No hay conexcion!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        if (message.size() >= 0) {
+
+            for (int i = 0; i < message.size(); i++) {
+                try {
+                    String dato1 = String.valueOf(message.get(i).getId());
+                    String dato2 = String.valueOf(message.get(i).getOperador());
+                    String dato3 = String.valueOf(message.get(i).getGuardia());
+                    String dato4 = String.valueOf(message.get(i).getMaterial());
+                    String dato5 = String.valueOf(message.get(i).getOrigen());
+                    String dato6 = String.valueOf(message.get(i).getDestino());
+                    String dato7 = String.valueOf(message.get(i).getPbruto());
+                    String dato8 = String.valueOf(message.get(i).getPneto());
+                    String dato9 = String.valueOf(message.get(i).getTara());
+
+                    String listString =
+                            dato1 + ","
+                                    + dato2 + ","
+                                    + dato3 + ","
+                                    + dato4 + ","
+                                    + dato5 + ","
+                                    + dato6 + ","
+                                    + dato7 + ","
+                                    + dato8 + ","
+                                    + dato9;
+                    Thread.sleep(500);
+                    Toast.makeText(this, listString, Toast.LENGTH_SHORT).show();
+                    byte[] datos1 = listString.getBytes();
+
+
+                    chatController.write(datos1);
+                    Toast.makeText(this, listString, Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+
+                }
+            }
+        }
+    }
+
+    private void Refresh() {
+        finish();
+        startActivity(getIntent());
+    }
 }
